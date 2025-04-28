@@ -1,0 +1,144 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nine Realms Defenders</title>
+    <link rel="stylesheet" href="styles.css">
+    <script type="importmap">
+        {
+            "imports": {
+                "gsap": "https://cdn.jsdelivr.net/npm/gsap@3.12.2/index.js",
+                "socket.io-client": "https://cdn.socket.io/4.7.2/socket.io.esm.min.js"
+            }
+        }
+    </script>
+    <script type="module" src="game.js"></script>
+</head>
+<body>
+    <div id="game-container">
+        <div id="title-screen">
+            <h1>Nine Realms Defenders</h1>
+            <h2>The Battle for Yggdrasil</h2>
+            <div id="save-slots">
+                <h3>Select Save Slot</h3>
+                <div id="slots-container">
+                    <div class="save-slot" data-slot="1">
+                        <h4>Slot 1</h4>
+                        <div class="slot-details"></div>
+                    </div>
+                    <div class="save-slot" data-slot="2">
+                        <h4>Slot 2</h4>
+                        <div class="slot-details"></div>
+                    </div>
+                    <div class="save-slot" data-slot="3">
+                        <h4>Slot 3</h4>
+                        <div class="slot-details"></div>
+                    </div>
+                </div>
+            </div>
+            <button id="start-btn">Begin Your Journey</button>
+        </div>
+        
+        <div id="game-screen" class="hidden">
+            <div id="top-bar">
+                <div id="einherjar-counter">Einherjar: <span id="einherjar-count">0</span></div>
+                <div id="resources">Resources: <span id="resource-count">100</span> <span class="resource-rate">(+<span id="resources-per-second">0.0</span>/sec)</span></div>
+                <div id="time-display">Day: <span id="day-count">1</span></div>
+                <button id="save-game-btn">Save Game</button>
+            </div>
+            
+            <div id="realms-container">
+                <!-- Realms will be dynamically generated here -->
+            </div>
+            
+            <div id="action-panel">
+                <h3>Asgard - Hall of Valhalla</h3>
+                <div id="training-options">
+                    <button class="action-btn" id="train-warrior">Train Warrior (10)</button>
+                    <button class="action-btn" id="train-archer">Train Archer (15)</button>
+                    <button class="action-btn" id="train-shield-maiden">Train Shield Maiden (20)</button>
+                </div>
+                <div id="current-realm-status">
+                    <h4>Select a realm to view status</h4>
+                    <div id="realm-details"></div>
+                </div>
+                <button id="next-day-btn">Next Day</button>
+            </div>
+        </div>
+        
+        <div id="army-preview-screen" class="hidden">
+            <div id="preview-header">
+                <h3 id="preview-title">Enemy Forces in <span id="preview-realm-name"></span></h3>
+            </div>
+            <div id="preview-container">
+                <div id="enemy-preview"></div>
+                <div id="force-descriptions">
+                    <div id="enemy-force-description"></div>
+                    <div id="your-force-description">
+                        <h4>Your Forces:</h4>
+                        <p>Warriors: <span id="preview-warriors">0</span></p>
+                        <p>Archers: <span id="preview-archers">0</span></p>
+                        <p>Shield Maidens: <span id="preview-shield-maidens">0</span></p>
+                        <p>Total: <span id="preview-total">0</span></p>
+                    </div>
+                </div>
+            </div>
+            <div id="preview-actions">
+                <button id="proceed-to-battle-btn">Proceed to Battle</button>
+                <button id="return-to-asgard-btn">Return to Asgard</button>
+            </div>
+        </div>
+        
+        <div id="battle-screen" class="hidden">
+            <div id="battle-header">
+                <h3 id="battle-title">Battle for Realm</h3>
+                <div id="battle-forces">
+                    <div id="player-forces">Your Forces: <span id="player-force-count">0</span></div>
+                    <div id="enemy-forces">Enemy Forces: <span id="enemy-force-count">0</span></div>
+                </div>
+            </div>
+            <div id="battlefield">
+                <div id="player-side"></div>
+                <div id="enemy-side"></div>
+            </div>
+            <div id="battle-log"></div>
+            <button id="auto-battle-btn">Auto Battle</button>
+            <button id="retreat-btn">Retreat</button>
+        </div>
+        
+        <div id="game-over-screen" class="hidden">
+            <h2 id="game-over-title"></h2>
+            <p id="game-over-message"></p>
+            <button id="restart-btn">Play Again</button>
+        </div>
+        
+        <div id="multiplayer-screen" class="hidden">
+            <div id="multiplayer-container">
+                <h2>Multiplayer</h2>
+                <div id="room-options">
+                    <div id="create-room">
+                        <h3>Create Room</h3>
+                        <input type="text" id="create-room-name" placeholder="Your Name">
+                        <button id="create-room-btn">Create Room</button>
+                    </div>
+                    <div id="join-room">
+                        <h3>Join Room</h3>
+                        <input type="text" id="join-room-id" placeholder="Room ID">
+                        <input type="text" id="join-room-name" placeholder="Your Name">
+                        <button id="join-room-btn">Join Room</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="room-info" class="hidden">
+                <h3>Room ID: <span id="current-room-id"></span></h3>
+                <div id="players-list"></div>
+                <div id="room-controls">
+                    <button id="ready-btn">Ready</button>
+                    <button id="leave-room-btn">Leave Room</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

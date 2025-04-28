@@ -1,0 +1,684 @@
+:root {
+    --asgard-color: #ffd700;
+    --midgard-color: #4caf50;
+    --jotunheim-color: #03a9f4;
+    --niflheim-color: #e0f7fa;
+    --muspelheim-color: #ff5722;
+    --alfheim-color: #9c27b0;
+    --svartalfheim-color: #607d8b;
+    --vanaheim-color: #8bc34a;
+    --helheim-color: #9e9e9e;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: #1a1a2e;
+    color: #e6e6e6;
+    overflow: hidden;
+}
+
+#game-container {
+    max-width: 1200px;
+    height: 100vh;
+    margin: 0 auto;
+    position: relative;
+    overflow: hidden;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Cg fill-rule='evenodd'%3E%3Cg fill='%23616161' fill-opacity='0.1'%3E%3Cpath opacity='.5' d='M96 95h4v1h-4v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9zm-1 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* Title Screen */
+#title-screen {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background: linear-gradient(rgba(26, 26, 46, 0.7), rgba(26, 26, 46, 0.9)), 
+                url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400' viewBox='0 0 800 800'%3E%3Cg fill='none' stroke='%23404' stroke-width='1'%3E%3Cpath d='M769 229L1037 260.9M927 880L731 737 520 660 309 538 40 599 295 764 126.5 879.5 40 599-197 493 102 382-31 229 126.5 79.5-69-63'/%3E%3Cpath d='M-31 229L237 261 390 382 603 493 308.5 537.5 101.5 381.5M370 905L295 764'/%3E%3Cpath d='M520 660L578 842 731 737 840 599 603 493 520 660 295 764 309 538 390 382 539 269 769 229 577.5 41.5 370 105 295 -36 126.5 79.5 237 261 102 382 40 599 -69 737 127 880'/%3E%3Cpath d='M520-140L578.5 42.5 731-63M603 493L539 269 237 261 370 105M902 382L539 269M390 382L102 382'/%3E%3Cpath d='M-222 42L126.5 79.5 370 105 539 269 577.5 41.5 927 80 769 229 902 382 603 493 731 737M295-36L577.5 41.5M578 842L295 764M40-201L127 80M102 382L-261 269'/%3E%3C/g%3E%3Cg fill='%23505'%3E%3Ccircle cx='769' cy='229' r='5'/%3E%3Ccircle cx='539' cy='269' r='5'/%3E%3Ccircle cx='603' cy='493' r='5'/%3E%3Ccircle cx='731' cy='737' r='5'/%3E%3Ccircle cx='520' cy='660' r='5'/%3E%3Ccircle cx='309' cy='538' r='5'/%3E%3Ccircle cx='295' cy='764' r='5'/%3E%3Ccircle cx='40' cy='599' r='5'/%3E%3Ccircle cx='102' cy='382' r='5'/%3E%3Ccircle cx='127' cy='80' r='5'/%3E%3Ccircle cx='370' cy='105' r='5'/%3E%3Ccircle cx='578' cy='42' r='5'/%3E%3Ccircle cx='237' cy='261' r='5'/%3E%3Ccircle cx='390' cy='382' r='5'/%3E%3C/g%3E%3C/svg%3E");
+}
+
+#title-screen h1 {
+    font-size: 3.5rem;
+    margin-bottom: 0.5rem;
+    color: var(--asgard-color);
+    text-shadow: 0 0 10px rgba(255, 215, 0, 0.7);
+}
+
+#title-screen h2 {
+    font-size: 1.8rem;
+    margin-bottom: 2rem;
+    color: #e6e6e6;
+}
+
+#start-btn {
+    padding: 12px 24px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    background-color: var(--asgard-color);
+    color: #1a1a2e;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+#start-btn:hover {
+    background-color: #e5c100;
+    transform: scale(1.05);
+    box-shadow: 0 0 15px rgba(255, 215, 0, 0.7);
+}
+
+#multiplayer-btn {
+    padding: 12px 24px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    background-color: #4a4a6e;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+#multiplayer-btn:hover {
+    background-color: #5a5a7e;
+    transform: scale(1.05);
+}
+
+/* Save Slots */
+#save-slots {
+    margin-bottom: 2rem;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 20px;
+    border-radius: 10px;
+    width: 80%;
+    max-width: 600px;
+}
+
+#save-slots h3 {
+    margin-bottom: 15px;
+    color: var(--asgard-color);
+}
+
+#slots-container {
+    display: flex;
+    justify-content: space-around;
+    gap: 15px;
+}
+
+.save-slot {
+    flex: 1;
+    padding: 15px;
+    background-color: rgba(50, 50, 80, 0.5);
+    border: 2px solid #333;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.save-slot:hover {
+    background-color: rgba(70, 70, 100, 0.5);
+    border-color: var(--asgard-color);
+}
+
+.save-slot.selected {
+    border-color: var(--asgard-color);
+    box-shadow: 0 0 10px var(--asgard-color);
+}
+
+.save-slot h4 {
+    margin-bottom: 10px;
+}
+
+.slot-details {
+    font-size: 0.9rem;
+    color: #ccc;
+}
+
+.empty-slot {
+    color: #888;
+}
+
+/* Game Screen */
+#game-screen {
+    height: 100vh;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+}
+
+#top-bar {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 20px;
+    background-color: rgba(0, 0, 0, 0.7);
+    border-bottom: 2px solid var(--asgard-color);
+}
+
+#save-game-btn {
+    padding: 5px 10px;
+    background-color: var(--asgard-color);
+    color: #1a1a2e;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+#realms-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    gap: 15px;
+    padding: 20px;
+    overflow-y: auto;
+}
+
+.realm {
+    background-color: rgba(0, 0, 0, 0.5);
+    border: 2px solid;
+    border-radius: 10px;
+    padding: 15px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.realm:hover {
+    transform: scale(1.02);
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+}
+
+.realm.active {
+    box-shadow: 0 0 15px rgba(255, 215, 0, 0.7);
+}
+
+.realm-name {
+    font-size: 1.3rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.realm-status {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+.threat-level {
+    height: 10px;
+    background-color: #f44336;
+    border-radius: 5px;
+    margin-top: 5px;
+}
+
+.defended {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: rgba(0, 150, 0, 0.8);
+    color: white;
+    padding: 3px 8px;
+    border-radius: 10px;
+    font-size: 0.8rem;
+}
+
+.under-attack {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: rgba(200, 0, 0, 0.8);
+    color: white;
+    padding: 3px 8px;
+    border-radius: 10px;
+    font-size: 0.8rem;
+    animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+    0% { opacity: 0.7; }
+    50% { opacity: 1; }
+    100% { opacity: 0.7; }
+}
+
+.resource-rate {
+    font-size: 0.8rem;
+    color: #8bc34a;
+    margin-left: 5px;
+}
+
+/* Realm colors */
+.realm.asgard { 
+    border-color: var(--asgard-color); 
+}
+.realm.midgard { border-color: var(--midgard-color); }
+.realm.jotunheim { border-color: var(--jotunheim-color); }
+.realm.niflheim { border-color: var(--niflheim-color); }
+.realm.muspelheim { border-color: var(--muspelheim-color); }
+.realm.alfheim { border-color: var(--alfheim-color); }
+.realm.svartalfheim { border-color: var(--svartalfheim-color); }
+.realm.vanaheim { border-color: var(--vanaheim-color); }
+.realm.helheim { border-color: var(--helheim-color); }
+
+#action-panel {
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 15px;
+    border-top: 2px solid var(--asgard-color);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto 1fr;
+    gap: 10px;
+}
+
+#action-panel h3 {
+    grid-column: 1 / -1;
+    color: var(--asgard-color);
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+#training-options {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.action-btn {
+    padding: 8px 16px;
+    background-color: #2a2a4e;
+    color: #e6e6e6;
+    border: 1px solid #4a4a6e;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.action-btn:hover {
+    background-color: #3a3a5e;
+}
+
+.action-btn:disabled {
+    background-color: #1a1a2e;
+    color: #666;
+    cursor: not-allowed;
+}
+
+#current-realm-status {
+    padding: 10px;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 5px;
+    height: 100%;
+}
+
+#next-day-btn {
+    grid-column: 1 / -1;
+    padding: 10px;
+    background-color: var(--asgard-color);
+    color: #1a1a2e;
+    border: none;
+    border-radius: 4px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+#next-day-btn:hover {
+    background-color: #e5c100;
+}
+
+/* Army Preview Screen */
+#army-preview-screen {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+#preview-header {
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 10px 20px;
+    border-bottom: 2px solid var(--muspelheim-color);
+    text-align: center;
+}
+
+#preview-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    background: linear-gradient(rgba(40, 0, 0, 0.2), rgba(0, 0, 0, 0.4));
+}
+
+#enemy-preview {
+    flex: 2;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+}
+
+.enemy-unit-preview {
+    width: 30px;
+    height: 30px;
+    background-color: #f44336;
+    border-radius: 50%;
+    position: relative;
+}
+
+.enemy-commander-preview {
+    width: 60px;
+    height: 60px;
+    background-color: #ff5722;
+    border-radius: 10px;
+    box-shadow: 0 0 15px #ff5722;
+    position: relative;
+}
+
+#force-descriptions {
+    flex: 1;
+    display: flex;
+    gap: 20px;
+}
+
+#enemy-force-description, #your-force-description {
+    flex: 1;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+    padding: 15px;
+}
+
+#preview-actions {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    padding: 15px;
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+#proceed-to-battle-btn, #return-to-asgard-btn {
+    padding: 10px 20px;
+    font-weight: bold;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+#proceed-to-battle-btn {
+    background-color: var(--muspelheim-color);
+    color: white;
+}
+
+#return-to-asgard-btn {
+    background-color: #4a4a6e;
+    color: white;
+}
+
+/* Battle Screen */
+#battle-screen {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+#battle-header {
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 10px 20px;
+    border-bottom: 2px solid #f44336;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#battle-forces {
+    display: flex;
+    gap: 20px;
+}
+
+#battlefield {
+    flex: 1;
+    display: flex;
+    background: linear-gradient(to right, rgba(0, 0, 100, 0.2), rgba(100, 0, 0, 0.2));
+    position: relative;
+}
+
+#player-side, #enemy-side {
+    flex: 1;
+    position: relative;
+    overflow: hidden;
+}
+
+.unit {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+}
+
+.player-unit {
+    background-color: #4caf50;
+}
+
+.enemy-unit {
+    background-color: #f44336;
+}
+
+#battle-log {
+    height: 100px;
+    overflow-y: auto;
+    padding: 10px;
+    background-color: rgba(0, 0, 0, 0.5);
+    font-family: monospace;
+    font-size: 0.9rem;
+}
+
+#auto-battle-btn, #retreat-btn {
+    padding: 10px;
+    margin: 10px;
+    font-weight: bold;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+#auto-battle-btn {
+    background-color: #4caf50;
+    color: white;
+}
+
+#retreat-btn {
+    background-color: #f44336;
+    color: white;
+}
+
+/* Game Over Screen */
+#game-over-screen {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+#game-over-title {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+#game-over-message {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    max-width: 600px;
+}
+
+#restart-btn {
+    padding: 12px 24px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    background-color: var(--asgard-color);
+    color: #1a1a2e;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+/* Surtr style for final battle */
+.surtr {
+    animation: surtr-glow 2s infinite alternate;
+}
+
+@keyframes surtr-glow {
+    0% { box-shadow: 0 0 10px #ff5722; }
+    100% { box-shadow: 0 0 30px #ff5722, 0 0 50px rgba(255, 87, 34, 0.5); }
+}
+
+/* Multiplayer Screen Styles */
+#multiplayer-screen {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(rgba(26, 26, 46, 0.7), rgba(26, 26, 46, 0.9)), 
+                url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400' viewBox='0 0 800 800'%3E%3Cg fill='none' stroke='%23404' stroke-width='1'%3E%3Cpath d='M769 229L1037 260.9M927 880L731 737 520 660 309 538 40 599 295 764 126.5 879.5 40 599-197 493 102 382-31 229 126.5 79.5-69-63'/%3E%3Cpath d='M-31 229L237 261 390 382 603 493 308.5 537.5 101.5 381.5M370 905L295 764'/%3E%3Cpath d='M520 660L578 842 731 737 840 599 603 493 520 660 295 764 309 538 390 382 539 269 769 229 577.5 41.5 370 105 295 -36 126.5 79.5 237 261 102 382 40 599 -69 737 127 880'/%3E%3Cpath d='M520-140L578.5 42.5 731-63M603 493L539 269 237 261 370 105M902 382L539 269M390 382L102 382'/%3E%3Cpath d='M-222 42L126.5 79.5 370 105 539 269 577.5 41.5 927 80 769 229 902 382 603 493 731 737M295-36L577.5 41.5M578 842L295 764M40-201L127 80M102 382L-261 269'/%3E%3C/g%3E%3Cg fill='%23505'%3E%3Ccircle cx='769' cy='229' r='5'/%3E%3Ccircle cx='539' cy='269' r='5'/%3E%3Ccircle cx='603' cy='493' r='5'/%3E%3Ccircle cx='731' cy='737' r='5'/%3E%3Ccircle cx='520' cy='660' r='5'/%3E%3Ccircle cx='309' cy='538' r='5'/%3E%3Ccircle cx='295' cy='764' r='5'/%3E%3Ccircle cx='40' cy='599' r='5'/%3E%3Ccircle cx='102' cy='382' r='5'/%3E%3Ccircle cx='127' cy='80' r='5'/%3E%3Ccircle cx='370' cy='105' r='5'/%3E%3Ccircle cx='578' cy='42' r='5'/%3E%3Ccircle cx='237' cy='261' r='5'/%3E%3Ccircle cx='390' cy='382' r='5'/%3E%3C/g%3E%3C/svg%3E");
+}
+
+#multiplayer-container {
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 30px;
+    border-radius: 10px;
+    width: 80%;
+    max-width: 600px;
+    border: 2px solid var(--asgard-color);
+}
+
+#multiplayer-container h2 {
+    color: var(--asgard-color);
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+#room-options {
+    display: flex;
+    gap: 30px;
+}
+
+#create-room, #join-room {
+    flex: 1;
+    padding: 15px;
+    background-color: rgba(50, 50, 80, 0.5);
+    border-radius: 8px;
+}
+
+#create-room h3, #join-room h3 {
+    color: var(--asgard-color);
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+#create-room-name, #join-room-id, #join-room-name {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 1px solid #4a4a6e;
+    border-radius: 4px;
+    color: white;
+}
+
+#create-room-btn, #join-room-btn {
+    width: 100%;
+    padding: 10px;
+    background-color: var(--asgard-color);
+    color: #1a1a2e;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+#room-info {
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 20px;
+    border-radius: 10px;
+    width: 80%;
+    max-width: 600px;
+    margin-top: 20px;
+    border: 2px solid var(--asgard-color);
+}
+
+#room-info h3 {
+    color: var(--asgard-color);
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+#players-list {
+    margin-bottom: 20px;
+}
+
+.player-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px;
+    margin-bottom: 5px;
+    background-color: rgba(50, 50, 80, 0.5);
+    border-radius: 4px;
+}
+
+.player-status {
+    padding: 2px 8px;
+    border-radius: 10px;
+    font-size: 0.8rem;
+}
+
+.ready {
+    background-color: rgba(0, 150, 0, 0.8);
+}
+
+.not-ready {
+    background-color: rgba(150, 150, 150, 0.8);
+}
+
+#room-controls {
+    display: flex;
+    gap: 10px;
+}
+
+#ready-btn, #leave-room-btn {
+    flex: 1;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+#ready-btn {
+    background-color: #4caf50;
+    color: white;
+}
+
+#leave-room-btn {
+    background-color: #f44336;
+    color: white;
+}
